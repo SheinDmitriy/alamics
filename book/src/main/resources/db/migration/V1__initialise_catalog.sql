@@ -1,6 +1,6 @@
 CREATE TABLE lib.catalogs
 (
-    id SERIAL PRIMARY KEY NOT NULL,
-    name TEXT
+    catalog_id SERIAL PRIMARY KEY NOT NULL,
+    name text
 );
-CREATE UNIQUE INDEX catalogs_id_uindex ON lib.catalogs (id);
+CREATE UNIQUE INDEX catalogs_id_uindex ON lib.catalogs (catalog_id);

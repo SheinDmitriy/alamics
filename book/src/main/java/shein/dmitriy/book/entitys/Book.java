@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.xml.catalog.Catalog;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,15 +19,18 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
-    Long id;
+    private Long id;
 
     @Column(name = "name")
-    String name;
+    private String name;
+
+    @Column(name = "artist")
+    private String artist;
 
     @Column(name = "release_date")
-    LocalDateTime releaseDate;
+    private LocalDateTime releaseDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "catalog_id")
-    Catalog catalog;
+    private Catalog catalog;
 }

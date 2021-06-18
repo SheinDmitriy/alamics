@@ -11,9 +11,9 @@ public class Catalog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
-    Long id;
+    @Column(name = "catalog_id")
+    private Long id;
 
     @Column(name = "name")
-    String name;
+    private String name;
 }
