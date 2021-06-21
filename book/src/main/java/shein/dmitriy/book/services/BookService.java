@@ -32,12 +32,31 @@ public class BookService {
 
     @Transactional
     public void save(Book book) {
-        bookRepository.save(book);
+         bookRepository.save(book);
     }
 
     @Transactional
     public void delete(Book book) {
         if(book.getId() != null)
         bookRepository.deleteById(book.getId());
+    }
+
+    @Transactional
+    public Book addBook(Book book){
+        return bookRepository.saveAndFlush(book);
+    }
+
+    @Transactional
+    public Book setBook(Book book, Long id) {
+        if(bookRepository.findById(id).isPresent()){
+            book.setId(id);
+            return bookRepository.saveAndFlush(book);
+        }
+        throw new UserNotFoundException(id);
+    }
+
+    public void deleteBook(Long id) {
+        if(id != null)
+        bookRepository.deleteById(id);
     }
 }
