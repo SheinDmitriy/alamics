@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>book_from</title>
+</head>
+<body>
+
+<form th:action="@{/form}" th:object="${book}" method="post">
+    </div>
+    <input type="hidden" th:field="*{id}">
+    <p>Название книги:</p>
+    <p>
+        <input type="text" th:field="*{name}">
+    </p>
+
+    <p>Автор:</p>
+    <p>
+        <input type="text" th:field="*{artist}">
+    </p>
+
+    <p>Дата выхода:</p>
+    <p><input type="date" th:field="*{releaseDate}" ></p>
+
+    <p>Каталог:</p>
+    <p>
+    <ul>
+        <li th:each="catalog : ${catalogs}">
+            <input th:type="radio"
+                   th:value="${catalog.getId()}"
+                   th:field="*{catalog}"
+                   th:text="${catalog.getName()}" />
+        </li>
+    </ul>
+    </p>
+    <div >
+        <button type="submit">Сохранить</button>
+    </div>
+</form>
+<form th:action="@{/delete}" th:object="${book}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <button type="submit" >Удалить</button>
+    </div>
+</form>
+
+</body>
+</html>

@@ -10,7 +10,4 @@ import java.util.Optional;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-    List<Book> findAll();
-
-    Optional<Book> findById(Long id);
 }

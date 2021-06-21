@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Entity
 @Data
@@ -28,9 +31,10 @@ public class Book {
     private String artist;
 
     @Column(name = "release_date")
-    private LocalDateTime releaseDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date releaseDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "catalog_id")
     private Catalog catalog;
 }

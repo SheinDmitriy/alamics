@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>main</title>
 </head>
 <body>
 <table border="1" style="border-collapse: collapse">
@@ -18,13 +18,22 @@
     <tbody>
     <tr th:each="book : ${books}">
         <td th:text="${book.getId()}" ></td>
-        <td th:text="${book.getName()}"></td>
+        <td>
+            <a th:text="${book.getName()}" th:href="@{/{id} (id = ${book.getId()})}"></a>
+        </td>
         <td th:text="${book.getArtist()}"></td>
         <td th:text="${book.getReleaseDate()}"></td>
         <td th:text="${book.getCatalog().getName()}"></td>
     </tr>
     </tbody>
 </table>
+
+<div>
+    <form th:action="@{/form}">
+        <button>Добавить книку</button>
+    </form>
+</div>
+
 
 </body>
 </html>

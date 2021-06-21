@@ -2,7 +2,10 @@ package shein.dmitriy.book.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import shein.dmitriy.book.entitys.Catalog;
 import shein.dmitriy.book.repositories.CatalogRepository;
+
+import java.util.List;
 
 @Service
 public class CatalogService {
@@ -12,5 +15,9 @@ public class CatalogService {
     @Autowired
     public CatalogService(CatalogRepository catalogRepository) {
         this.catalogRepository = catalogRepository;
+    }
+
+    public List<Catalog> findAll() {
+       return catalogRepository.findAll();
     }
 }

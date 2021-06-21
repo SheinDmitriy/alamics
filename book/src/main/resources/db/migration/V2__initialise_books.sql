@@ -3,7 +3,7 @@ CREATE TABLE lib.books
     book_id SERIAL PRIMARY KEY NOT NULL,
     name TEXT,
     artist TEXT,
-    release_date timestamp,
+    release_date date,
     catalog_id serial,
     constraint books_catalog_id_fk foreign key (catalog_id)
         references lib.catalogs (catalog_id)
