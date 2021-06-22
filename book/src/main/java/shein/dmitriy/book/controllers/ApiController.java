@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import shein.dmitriy.book.dto.BookDto;
 import shein.dmitriy.book.entitys.Book;
 import shein.dmitriy.book.services.BookService;
 
@@ -21,27 +22,27 @@ public class ApiController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Book>> getAllBook(){
-        return new ResponseEntity<>(bookService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<BookDto>> getAllBook(){
+        return new ResponseEntity<>(bookService.getAllBook(), HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Book> getBook(@PathVariable Long id){
-        return new ResponseEntity<>(bookService.findById(id), HttpStatus.OK);
+    public ResponseEntity<BookDto> getBook(@PathVariable Long id){
+        return new ResponseEntity<>(bookService.getBook(id), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Book> addPerson(@RequestBody Book book){
-        return new ResponseEntity<>(bookService.addBook(book), HttpStatus.OK);
+    public ResponseEntity<Book> addBook(@RequestBody BookDto bookDto){
+        return new ResponseEntity<>(bookService.addBook(bookDto), HttpStatus.OK);
     }
 
     @PutMapping(value = "{id}")
-    public ResponseEntity<Book> setBook(@RequestBody Book book, @PathVariable Long id){
-        return new ResponseEntity<>(bookService.setBook(book, id), HttpStatus.OK);
+    public ResponseEntity<Book> setBook(@RequestBody BookDto bookDto, @PathVariable Long id){
+        return new ResponseEntity<>(bookService.setBook(bookDto, id), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity deletePerson(@PathVariable Long id){
+    public ResponseEntity deleteBook(@PathVariable Long id){
         bookService.deleteBook(id);
         return new ResponseEntity( HttpStatus.OK);
     }

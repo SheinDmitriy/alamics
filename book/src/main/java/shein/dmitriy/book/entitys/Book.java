@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import shein.dmitriy.book.dto.BookDto;
 
 import javax.persistence.*;
 import java.text.ParseException;
@@ -37,4 +38,12 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "catalog_id")
     private Catalog catalog;
+
+    public static Book from(BookDto book){
+        return Book.builder()
+                .name(book.getName())
+                .artist(book.getArtist())
+                .releaseDate(book.getReleaseDate())
+                .build();
+    }
 }
